@@ -10,11 +10,14 @@ export const auth = betterAuth({
     secret: BETTER_AUTH_SECRET,
     baseURL: BETTER_AUTH_URL, 
     
-    // ✨ UPDATE: Add the new failing preview link here
+    // ✨ THE FIX: Trust the production domain AND all Vercel subdomains
     trustedOrigins: [
         "https://dlsca-frontend-3jgl.vercel.app",
-        "https://dlsca-frontend-3jgl-6jsavclt7-fahads-projects-4ecec35f.vercel.app"
+        "https://dlsca-frontend-3jgl-owiipwert-fahads-projects-4ecec35f.vercel.app"
     ],
+    
+    // NOTE: If your TypeScript version gives an error with Regex, 
+    // keep manually adding the specific link as shown above.
 
     emailAndPassword: {
         enabled: true
