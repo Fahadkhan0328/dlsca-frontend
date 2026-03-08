@@ -5,13 +5,21 @@ import { DATABASE_URL, BETTER_AUTH_SECRET, BETTER_AUTH_URL } from "$env/static/p
 
 export const auth = betterAuth({
     database: new Pool({
-        // This 'uselibpqcompat' flag fixes the pg warning you received
+        // The 'uselibpqcompat' flag fixes the pg warning for Neon/Postgres
         connectionString: DATABASE_URL + "&uselibpqcompat=true"
     }),
     secret: BETTER_AUTH_SECRET,
-    // This fixes the "Base URL could not be determined" warning
+   // ... rest of your config
     baseURL: BETTER_AUTH_URL, 
+    
+    // ✨ FIX: Use direct strings instead of a Regex pattern
+    trustedOrigins: [
+        "https://dlsca-frontend-3jgl.vercel.app",
+        "https://dlsca-frontend-3jgl-4wzpauagx-fahads-projects-4ecec35f.vercel.app"
+    ],
+
     emailAndPassword: {
+    // ...
         enabled: true
     },
     plugins: [
